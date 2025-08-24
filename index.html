@@ -3,100 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rahul Kumar | Portfolio</title>
+  <meta name="description" content="Rahul Kumar | DevOps Engineer Portfolio">
+  <title>Rahul Kumar - Portfolio</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-  <!-- Navigation -->
-  <nav>
-    <div class="nav-container">
-      <h2 class="logo">Portfolio</h2>
-      <ul>
-        <li><a href="#home" class="active">Home</a></li>
+  <!-- NAVBAR -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">Rahul Kumar</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
         <li><a href="#education">Education</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
-        <li><a href="#about">About Me</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-    </div>
-  </nav>
-
-  <!-- Header / Hero Section -->
-  <header id="home">
-    <img src="rahul.profile.jpg" alt="Rahul Kumar" class="profile-img">
-    <h1>Rahul Kumar</h1>
-    <p>Cloud Computing & DevOps Engineer</p>
+      <button class="dark-mode-toggle" id="darkModeToggle"><i class="fas fa-moon"></i></button>
+    </nav>
   </header>
 
-  <!-- Education Section -->
-  <section id="education" class="section">
-    <h2>Education</h2>
-    <div class="education-card">
-      <h3>B.Tech in Computer Science</h3>
-      <p>Jaipur Engineering College & Research Centre</p>
-      <p>2023 - Current</p>
-    </div>
-    <div class="education-card">
-      <h3>Diploma in Computer Science</h3>
-      <p>Apex University</p>
-      <p>2020 - 2023</p>
-    </div>
+  <!-- HERO SECTION -->
+  <section id="home" class="hero">
+    <img src="rahul.profile.jpg" alt="Rahul Kumar" class="profile-pic">
+    <h1>Hi, I'm Rahul Kumar</h1>
+    <p class="profession">Aspiring DevOps Engineer</p>
+    <a href="#projects" class="btn">View My Work</a>
   </section>
 
-  <!-- Skills Section -->
-  <section id="skills" class="section">
-    <h2>Skills</h2>
-    <ul class="skills-list">
-      <li>AWS</li>
-      <li>Linux</li>
-      <li>Python</li>
-      <li>Shell Scripting</li>
-      <li>Docker</li>
-      <li>Kubernetes</li>
-      <li>Git & GitHub</li>
+  <!-- ABOUT SECTION -->
+  <section id="about" class="section">
+    <h2>About Me</h2>
+    <p>
+      I am a passionate and detail-oriented DevOps enthusiast skilled in automating workflows, managing cloud infrastructure, and implementing CI/CD pipelines. My goal is to bridge development and operations to deliver reliable and scalable solutions.
+    </p>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="section">
+    <h2>Education</h2>
+    <ul>
+      <li><strong>B.Tech in Computer Science</strong> - JECRC, Jaipur (2022–2026)</li>
+      <li>Specialization in DevOps and Cloud Computing</li>
     </ul>
   </section>
 
-  <!-- Projects Section -->
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <span>Linux</span>
+      <span>AWS</span>
+      <span>Python</span>
+      <span>Docker</span>
+      <span>Kubernetes</span>
+      <span>Git & GitHub</span>
+      <span>CI/CD</span>
+      <span>Terraform</span>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
   <section id="projects" class="section">
     <h2>Projects</h2>
     <div class="project-card">
       <h3>Weather App</h3>
-      <p>
-        A Python app using OpenWeatherMap API to show real-time weather data:
-        temperature, humidity, and wind speed.
-      </p>
+      <p>A Python-based app using OpenWeather API to fetch real-time weather info.</p>
     </div>
     <div class="project-card">
       <h3>EC2 Automation Script</h3>
-      <p>
-        Automated AWS EC2 provisioning with Bash & AWS CLI. Includes error handling and reusable functions.
-      </p>
+      <p>Robust shell script to launch EC2 instances using AWS CLI with error handling.</p>
+    </div>
+    <div class="project-card">
+      <h3>Portfolio Website</h3>
+      <p>Responsive personal portfolio built with HTML, CSS, and JavaScript.</p>
     </div>
   </section>
 
-  <!-- About Me -->
-   <section id="about" class="section">
-    <h2>About Me</h2>
-    <p>I am a passionate and detail-oriented Computer Science student with a strong interest in Cloud Computing, DevOps, and Automation. Skilled in AWS services (EC2, IAM, S3, ECS, VPC, API Gateway, Lambda, CI/CD CodePipeline, AWS CLI, Load Balancer), Linux, Shell Scripting, and Basic Python, I focus on building scalable and efficient solutions. I enjoy working on projects that involve infrastructure automation and cloud deployment to simplify complex workflows. My goal is to leverage modern tools and technologies to deliver secure, optimized, and reliable systems.</p>
-   </section>
-
-   <!-- Contact -->
-    <section id="contact" class="section">
-        <div>
-            <ul>
-                <li><a href="gmail.com">rahh.kumar2006@gmail.com</a></li>
-                <li><a href="linkedin.com">https://www.linkedin.com/in/rahhkumar/</a></li>
-                <li><a href="github.com">https://github.com/Rahul-025/</a></li>
-            </ul>
-        </div>
-        
-    </section>
-
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer>
-    <p>&copy; 2025 Rahul Kumar | All rights reserved</p>
+    <p>© 2025 Rahul Kumar | Built with ❤️ and DevOps mindset</p>
+    <div class="social-links">
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
   </footer>
 
   <script src="script.js"></script>
