@@ -12,9 +12,23 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js
         uses: actions/setup-node@v4
 
+      # ✅ 1. Fix Permissions BEFORE Deploy
+      - name: Fix Permissions on Remote Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HETZNER_HOST }}
+          username: ${{ secrets.HETZNER_USER }}
+          key: ${{ secrets.HETZNER_KEY }}
+          script: |
+            echo "🛠 Setting permissions before deployment..."
+            sudo mkdir -p /var/www/html
+            sudo chown -R $USER:$USER /var/www/html
+            sudo chmod -R 755 /var/www/html
+
+      # ✅ 2. Deploy Files
       - name: Deploy Build to EC2
         uses: appleboy/scp-action@master
         with:
@@ -23,19 +37,9 @@ jobs:
           key: ${{ secrets.HETZNER_KEY }}
           source: "index.html,style.css,script.js,rahul.profile.jpg"
           target: "/var/www/html/"
-          overwrite: true 
+          overwrite: true
 
-      - name: Set Permissions 
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HETZNER_HOST }}
-          username: ${{ secrets.HETZNER_USER }}
-          key: ${{ secrets.HETZNER_KEY }}
-          script: |
-            echo "🛠 Setting permissions..."
-            sudo chown -R root:root /var/www/html/
-            sudo chmod -R 755 /var/www/html/
-
+      # ✅ 3. Reload NGINX after deploy
       - name: Reload Nginx
         uses: appleboy/ssh-action@master
         with:
@@ -43,5 +47,5 @@ jobs:
           username: ${{ secrets.HETZNER_USER }}
           key: ${{ secrets.HETZNER_KEY }}
           script: |
-            echo "🔄 Reloading Nginx..."
-            sudo nginx -s reload
+            echo "🔄 Reloading NGINX..."
+            sudo nginx -t && sudo systemctl restart nginx
