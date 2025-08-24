@@ -7,7 +7,7 @@
 }
 
 body {
-  background: #303030;
+  background: #293739;
   color: #f4f4f4;
   line-height: 1.6;
   scroll-behavior: smooth;
@@ -63,7 +63,7 @@ nav ul li a.active, nav ul li a:hover {
 header {
   text-align: center;
   padding: 120px 20px 40px; /* Extra space for nav */
-  background: #293739;
+  background: green;
 }
 
 .profile-img {
