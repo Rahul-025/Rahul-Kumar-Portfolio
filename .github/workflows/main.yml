@@ -8,10 +8,6 @@ jobs:
   rahul-deploy:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [22.x]
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -36,7 +32,8 @@ jobs:
           key: ${{ secrets.HETZNER_KEY }}
           script: |
             echo "🛠 Setting permissions..."
-            chmod -R 755 /var/www/html/
+            sudo chown -R ubuntu:ubuntu /var/www/html/
+            sudo chmod -R 755 /var/www/html/
 
       - name: Reload Nginx
         uses: appleboy/ssh-action@master
