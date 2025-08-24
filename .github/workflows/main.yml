@@ -43,4 +43,4 @@ jobs:
           key: ${{ secrets.HETZNER_KEY }}
           script: |
             echo "🔄 Reloading Nginx..."
-            nginx -s reload
+            sudo nginx -s reload
