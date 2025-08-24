@@ -5,7 +5,7 @@ on:
     branches: ["main"]
 
 jobs:
-    rahul-deploy:
+  rahul-deploy:
     runs-on: ubuntu-latest
 
     strategy:
