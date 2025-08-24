@@ -22,7 +22,7 @@ jobs:
           username: ${{ secrets.HETZNER_USER }}
           key: ${{ secrets.HETZNER_KEY }}
           source: "index.html,style.css,script.js,rahul.profile.jpg"
-          target: "/home/ubuntu/"
+          target: "/var/www/html/"
 
       - name: Set Permissions 
         uses: appleboy/ssh-action@master
@@ -32,8 +32,8 @@ jobs:
           key: ${{ secrets.HETZNER_KEY }}
           script: |
             echo "🛠 Setting permissions..."
-            sudo chown -R ubuntu:ubuntu /home/ubuntu/
-            sudo chmod -R 755 /home/ubuntu/
+            sudo chown -R root:root /var/www/html/
+            sudo chmod -R 755 /var/www/html/
 
       - name: Reload Nginx
         uses: appleboy/ssh-action@master
