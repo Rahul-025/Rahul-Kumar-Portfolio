@@ -21,7 +21,7 @@ jobs:
           host: ${{ secrets.HETZNER_HOST }}
           username: ${{ secrets.HETZNER_USER }}
           key: ${{ secrets.HETZNER_KEY }}
-          source: "./"
+          source: "index.html,style.css,script.js,rahul.profile.jpg"
           target: "/var/www/html/"
 
       - name: Set Permissions 
