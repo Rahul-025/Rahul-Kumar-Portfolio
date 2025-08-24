@@ -23,6 +23,7 @@ jobs:
           key: ${{ secrets.HETZNER_KEY }}
           source: "index.html,style.css,script.js,rahul.profile.jpg"
           target: "/var/www/html/"
+          overwrite: true 
 
       - name: Set Permissions 
         uses: appleboy/ssh-action@master
