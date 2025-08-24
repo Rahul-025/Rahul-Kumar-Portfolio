@@ -1,23 +1,49 @@
-name: Portfolio Deployment
+name: rahul deployment
 
 on:
   push:
-    branches:
-    - main
+    branches: ["main"]
 
 jobs:
-  deploy:
+    rahul-deploy:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [22.x]
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v1
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ap-south-1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
 
-    - name: Deploy static site to S3 bucket
-      run: aws s3 sync . s3://rahul-kumar-portfolio --delete
+      - name: Deploy Build to EC2
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HETZNER_HOST }}
+          username: ${{ secrets.HETZNER_USER }}
+          key: ${{ secrets.HETZNER_KEY }}
+          source: "./"
+          target: "/var/www/html/"
+
+      - name: Set Permissions 
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HETZNER_HOST }}
+          username: ${{ secrets.HETZNER_USER }}
+          key: ${{ secrets.HETZNER_KEY }}
+          script: |
+            echo "🛠 Setting permissions..."
+            chmod -R 755 /var/www/html/
+
+      - name: Reload Nginx
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HETZNER_HOST }}
+          username: ${{ secrets.HETZNER_USER }}
+          key: ${{ secrets.HETZNER_KEY }}
+          script: |
+            echo "🔄 Reloading Nginx..."
+            nginx -s reload
